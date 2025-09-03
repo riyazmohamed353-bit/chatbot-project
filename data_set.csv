@@ -1,0 +1,13 @@
+User Query,Intent,Response
+What is the hostel fee?,Fees_Info,The hostel fee is ₹50,000 per year.
+How can I pay my college fees?,Fees_Info,You can pay online through the student portal.
+Where is the library located?,Library_Info,The library is near the main building.
+What are library timings?,Library_Info,The library is open from 8 AM to 8 PM.
+Tell me about hostel facilities,Hostel_Info,The hostel has Wi-Fi, study rooms, and a mess facility.
+How many students per room in hostel?,Hostel_Info,Each room accommodates 2–3 students.
+Tell me about college,College_Info,Our college was established in 2001 and is AICTE approved.
+hi,greeting,Hello! How can I assist you today?
+hello,greeting,Hi there! Need any help with campus info?
+what is the college fee,college_fees,The annual college fee is ₹50,000.
+tell me semester fees,semester_fees,Each semester fee is ₹25,000.
+how to apply leave,leave,You can apply for leave on the student portal under 'Academics > Leave Application'.
