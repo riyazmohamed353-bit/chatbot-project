@@ -1,51 +1,37 @@
-from flask import Flask, render_template, request, jsonify
-import csv, random, re
+import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.pipeline import make_pipeline
+from flask import Flask, render_template, request, jsonify
+import random
 
 app = Flask(__name__)
 
 # -----------------------------
 # 1. Load CSV
 # -----------------------------
-queries = []
-intents = []
-responses_by_intent = {}
-
-with open("data_set.csv", "r", encoding="utf-8") as file:
-    reader = csv.DictReader(file)
-    for row in reader:
-        queries.append(row["User Query"].lower())
-        intents.append(row["Intent"])
-        
-        if row["Intent"] not in responses_by_intent:
-            responses_by_intent[row["Intent"]] = []
-        responses_by_intent[row["Intent"]].append(row["Response"])
+data = pd.read_csv("data_set.csv")  # Columns: User Query, Intent, Response
 
 # -----------------------------
 # 2. Train NLP model
 # -----------------------------
-model = make_pipeline(TfidfVectorizer(), MultinomialNB())
-model.fit(queries, intents)
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(data['User Query'])   # <-- fixed column name
+y = data['Intent']
+
+model = MultinomialNB()
+model.fit(X, y)
 
 # -----------------------------
-# 3. Rule + ML Response
+# 3. Response logic
 # -----------------------------
 def get_response(user_input):
     text = user_input.lower().strip()
+    X_test = vectorizer.transform([text])
+    intent = model.predict(X_test)[0]
 
-    # --- Rule-based keywords ---
-    if "fee" in text:
-        return random.choice(responses_by_intent.get("college_fees", ["Fees info not found"]))
-    if "semester" in text:
-        return random.choice(responses_by_intent.get("semester_fees", ["Semester fees not found"]))
-    if "hi" in text or "hello" in text:
-        return random.choice(responses_by_intent.get("greeting", ["Hello!"]))
-
-    # --- Else use ML ---
-    intent = model.predict([text])[0]
-    return random.choice(responses_by_intent[intent])
+    # Pick a random response from matching intent
+    responses = data[data['Intent'] == intent]['Response'].tolist()
+    return random.choice(responses) if responses else "Sorry, I don't understand."
 
 # -----------------------------
 # 4. Flask Routes
