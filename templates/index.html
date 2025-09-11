@@ -89,7 +89,7 @@
 </head>
 <body>
   <div class="chat-container">
-    <div class="chat-header">🤖 Rohini College Assistant</div>
+    <div class="chat-header"> Rohini College Assistant</div>
     <div class="chat-box" id="chatBox">
       <div class="message bot">Hello 👋, I am your campus assistant. How can I help you today?</div>
     </div>
@@ -130,7 +130,7 @@
         const data = await res.json();
         appendMessage(data.reply, "bot");
       } catch (err) {
-        appendMessage("⚠️ Server error. Please try again.", "bot");
+        appendMessage("information not available", "bot");
       }
     }
 
