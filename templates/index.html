@@ -38,7 +38,7 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 10px; /* ✅ consistent spacing between messages */
+      gap: 10px;
       background: #f9f9f9;
     }
     .message {
@@ -94,7 +94,7 @@
       <div class="message bot">👋 Hello! I am your campus assistant. How can I help you today?</div>
     </div>
     <div class="chat-input">
-      <input type="text" id="userInput" placeholder="Type your message...">
+      <input type="text" id="userInput" placeholder="Type your message..." autofocus>
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
@@ -109,6 +109,7 @@
       msgDiv.innerText = message;
       chatBox.appendChild(msgDiv);
       chatBox.scrollTop = chatBox.scrollHeight;
+      return msgDiv; // return for later removal (typing indicator)
     }
 
     async function sendMessage() {
@@ -122,21 +123,29 @@
         const formData = new FormData();
         formData.append("message", message);
 
+        // show typing indicator
+        const typingDiv = appendMessage("✍️ Typing...", "bot");
+
         const res = await fetch("/get", {
           method: "POST",
           body: formData
         });
 
         const data = await res.json();
+
+        // remove typing indicator
+        typingDiv.remove();
+
         appendMessage(data.reply, "bot");
       } catch (err) {
         appendMessage("❓ Sorry, I don't have info on that. Please contact the admin office.", "bot");
       }
     }
 
-    // Press Enter to send
+    // Press Enter to send, Shift+Enter for newline
     userInput.addEventListener("keypress", function(e) {
-      if (e.key === "Enter") {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
         sendMessage();
       }
     });
