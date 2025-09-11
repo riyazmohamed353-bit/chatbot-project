@@ -2,4 +2,5 @@ Flask
 pandas
 scikit-learn
 numpy
+fuzzywuzzy[speedup]
 gunicorn
