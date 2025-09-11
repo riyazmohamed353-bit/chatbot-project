@@ -1,11 +1,11 @@
 from flask import Flask, request, jsonify, render_template
 import pandas as pd
-from fuzzywuzzy import process
+from sentence_transformers import SentenceTransformer, util
 
-# Initialize Flask app
+# -------------------- Flask App --------------------
 app = Flask(__name__)
 
-# Load dataset
+# -------------------- Load Dataset --------------------
 data = pd.read_csv("data_set.csv")
 
 # Convert CSV into dictionary {question: [answers]}
@@ -18,28 +18,47 @@ for _, row in data.iterrows():
     else:
         qa_dict[question] = [answer]
 
-questions = list(qa_dict.keys())  # list of all questions
+questions = list(qa_dict.keys())
 
-# Home route → loads index.html
+# -------------------- Embedding Model --------------------
+# Small, fast model (downloads first time)
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+# Precompute embeddings for dataset questions
+question_embeddings = model.encode(questions, convert_to_tensor=True)
+
+# -------------------- Routes --------------------
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# Chatbot route
 @app.route("/get", methods=["POST"])
 def chatbot_response():
-    user_message = request.form["message"].strip().lower()
+    user_message = request.form["message"].strip()
 
-    # Fuzzy match with threshold
-    best_match, score = process.extractOne(user_message, questions)
+    # Reject very short or nonsense input
+    if len(user_message) < 3:
+        return jsonify({"reply": "⚠️ Please ask a complete question."})
 
-    if score >= 70:  # adjust threshold if needed
-        reply = qa_dict[best_match][0]  # pick first available answer
+    # Encode user query
+    user_embedding = model.encode(user_message, convert_to_tensor=True)
+
+    # Compute cosine similarity
+    scores = util.cos_sim(user_embedding, question_embeddings)[0]
+    best_idx = int(scores.argmax())
+    best_score = float(scores[best_idx])
+
+    # Check similarity threshold
+    if best_score >= 0.6:
+        reply = qa_dict[questions[best_idx]][0]  # take first answer
     else:
-        reply = "❓ Sorry, I don't have info on that. Please contact the admin office."
+        reply = (
+            "❓ Sorry, I don't have info on that.\n"
+            "👉 Try asking about college details."
+        )
 
     return jsonify({"reply": reply})
 
-# Run the app
+# -------------------- Run --------------------
 if __name__ == "__main__":
     app.run(debug=True)
