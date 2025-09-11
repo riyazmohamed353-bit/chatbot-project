@@ -1,39 +1,44 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, render_template, request, jsonify
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# Load dataset
-df = pd.read_csv("data_set.csv")
+app = Flask(__name__)
 
-# Extract questions and answers
+# -----------------------------
+# Load Dataset
+# -----------------------------
+df = pd.read_csv("data_set.csv")  # Columns: Question, Answer
+
 questions = df["Question"].values
 answers = df["Answer"].values
 
-# NLP model
+# Train NLP Vectorizer
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(questions)
 
-# Flask app
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-@app.route("/chat", methods=["POST"])
-def chat():
-    user_msg = request.json["message"]
-
-    # Transform query
-    user_vec = vectorizer.transform([user_msg])
+# -----------------------------
+# Response Function
+# -----------------------------
+def get_response(user_input):
+    user_vec = vectorizer.transform([user_input])
     similarity = cosine_similarity(user_vec, X)
 
-    # Best match
     idx = similarity.argmax()
-    response = answers[idx]
+    return answers[idx]
 
-    return jsonify({"reply": response})
+# -----------------------------
+# Routes
+# -----------------------------
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/get", methods=["POST"])
+def chatbot_response():
+    user_input = request.form["message"]
+    bot_reply = get_response(user_input)
+    return jsonify({"reply": bot_reply})
 
 if __name__ == "__main__":
     app.run(debug=True)
