@@ -38,10 +38,10 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
+      gap: 10px; /* ✅ consistent spacing between messages */
       background: #f9f9f9;
     }
     .message {
-      margin: 6px 0;
       padding: 10px 14px;
       border-radius: 15px;
       max-width: 70%;
@@ -91,7 +91,7 @@
   <div class="chat-container">
     <div class="chat-header"> Rohini College Assistant</div>
     <div class="chat-box" id="chatBox">
-      <div class="message bot">Hello 👋, I am your campus assistant. How can I help you today?</div>
+      <div class="message bot">👋 Hello! I am your campus assistant. How can I help you today?</div>
     </div>
     <div class="chat-input">
       <input type="text" id="userInput" placeholder="Type your message...">
@@ -130,7 +130,7 @@
         const data = await res.json();
         appendMessage(data.reply, "bot");
       } catch (err) {
-        appendMessage("information not available", "bot");
+        appendMessage("❓ Sorry, I don't have info on that. Please contact the admin office.", "bot");
       }
     }
 
