@@ -1,44 +1,45 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+from fuzzywuzzy import process
 
+# Initialize Flask app
 app = Flask(__name__)
 
-# -----------------------------
-# Load Dataset
-# -----------------------------
-df = pd.read_csv("data_set.csv")  # Columns: Question, Answer
+# Load dataset
+data = pd.read_csv("data_set.csv")
 
-questions = df["Question"].values
-answers = df["Answer"].values
+# Convert CSV into dictionary {question: [answers]}
+qa_dict = {}
+for _, row in data.iterrows():
+    question = str(row["Question"]).strip().lower()
+    answer = str(row["Answer"]).strip()
+    if question in qa_dict:
+        qa_dict[question].append(answer)
+    else:
+        qa_dict[question] = [answer]
 
-# Train NLP Vectorizer
-vectorizer = TfidfVectorizer()
-X = vectorizer.fit_transform(questions)
+questions = list(qa_dict.keys())  # list of all questions
 
-# -----------------------------
-# Response Function
-# -----------------------------
-def get_response(user_input):
-    user_vec = vectorizer.transform([user_input])
-    similarity = cosine_similarity(user_vec, X)
-
-    idx = similarity.argmax()
-    return answers[idx]
-
-# -----------------------------
-# Routes
-# -----------------------------
+# Home route → loads index.html
 @app.route("/")
-def index():
+def home():
     return render_template("index.html")
 
+# Chatbot route
 @app.route("/get", methods=["POST"])
 def chatbot_response():
-    user_input = request.form["message"]
-    bot_reply = get_response(user_input)
-    return jsonify({"reply": bot_reply})
+    user_message = request.form["message"].strip().lower()
 
+    # Fuzzy match with threshold
+    best_match, score = process.extractOne(user_message, questions)
+
+    if score >= 70:  # adjust threshold if needed
+        reply = qa_dict[best_match][0]  # pick first available answer
+    else:
+        reply = "❓ Sorry, I don't have info on that. Please contact the admin office."
+
+    return jsonify({"reply": reply})
+
+# Run the app
 if __name__ == "__main__":
     app.run(debug=True)
