@@ -1,59 +1,65 @@
-User Query,Intent,Response
-What is the hostel fee?,Fees_Info,The hostel fee for ground floor is ₹60,000 per year, for first floor ₹65,000, for second floor ₹70,000, and for third floor ₹75,000.
-How can I pay my college fees?,Fees_Info,You can pay online through the MyCamu app or offline at the fees counter.
-What is the college annual fee?,College_Fees,The annual college fee is ₹50,000.
-Tell me semester fees,Semester_Fees,Each semester fee is ₹25,000.
-Where is the library located?,Library_Info,The library is located in A.P.J block, 2nd floor.
-What are library timings?,Library_Info,The library is open from 8 AM to 8 PM on weekdays.
-Does library open on weekends?,Library_Info,The library is open on Saturday till 2 PM and closed on Sunday.
-Tell me about hostel facilities,Hostel_Info,The hostel has Wi-Fi, study rooms, and a mess facility with both vegetarian and non-vegetarian food.
-How many students per room in hostel?,Hostel_Info,Each hostel room accommodates 2–3 students.
-Is WiFi available in hostel?,Hostel_Info,Yes, high-speed Wi-Fi is available in all hostels.
-Tell me about college,College_Info,Rohini College of Engineering and Technology was established in 2012 and is AICTE approved.
-Is RCET NAAC accredited?,College_Info,Yes, RCET is NAAC accredited with good academic standards.
-What are the available departments?,Department_Info,Departments include CSE, CSE (AI&ML), AI&DS, ECE, EEE, Civil, Biomedical, Agriculture, Mechanical, MBA, MCA, and ME.
-Do you have MBA?,Department_Info,Yes, we offer MBA with specializations in HR, Finance, and Marketing.
-Do you offer MCA?,Department_Info,Yes, RCET offers MCA for students interested in computer applications.
-hi,Greeting,Hello! How can I assist you today?
-hello,Greeting,Hi there! Need any help with campus info?
-good morning,Greeting,Good morning! Hope you are doing well.
-good evening,Greeting,Good evening! How can I help you?
-Who is the principal?,Staff_Info,Dr. N. Neelamegam is the Principal of RCET.
-Who is the chairman?,Staff_Info,The Chairman of RCET is Shri K. Neela Marthandan.
-Who is the vice chairman?,Staff_Info,The Vice Chairman of RCET is Dr. N. Neela Vishnu.
-Who is the managing director?,Staff_Info,The Managing Director is Dr. R. Neela Vishnu.
-Is there transport facility?,Transport_Info,Yes, the college provides bus facilities covering major towns in Kanyakumari and Tirunelveli districts.
-How many buses are available?,Transport_Info,RCET operates more than 25 buses for student and staff transportation.
-What is the placement record?,Placement_Info,RCET has strong placement support with companies like TCS, Wipro, Infosys, HCL, and Zoho recruiting students.
-Is placement training provided?,Placement_Info,Yes, students receive soft skills and technical training before placements.
-Tell me about admission,Admission_Info,Admission is based on 10+2 marks and TNEA counseling for UG courses.
-What is eligibility for B.Tech?,Admission_Info,You need to complete 10+2 with Physics, Chemistry, and Mathematics with at least 50% marks.
-What is eligibility for MBA?,Admission_Info,You need to complete any UG degree with at least 50% marks and appear for TANCET or equivalent exam.
-Do you have scholarships?,Scholarship_Info,Yes, government and management scholarships are available for eligible students.
-What are sports facilities?,Sports_Info,RCET has playgrounds for cricket, football, volleyball, and an indoor stadium for badminton and table tennis.
-Do you have gym?,Sports_Info,Yes, there is a modern gym available for students in the campus.
-Where is canteen located?,Facility_Info,The canteen is located near the main academic block.
-What food is available in canteen?,Facility_Info,The canteen serves South Indian, North Indian, and snacks at affordable prices.
-Is medical facility available?,Facility_Info,Yes, RCET has a medical center with a full-time nurse and visiting doctors.
-Do you have ATM inside campus?,Facility_Info,Yes, there is an ATM facility inside the campus for students and staff.
-When was RCET established?,College_Info,RCET was established in 2012 in Kanyakumari district.
-Is RCET AICTE approved?,College_Info,Yes, the college is AICTE approved.
-Is RCET affiliated to Anna University?,College_Info,Yes, Rohini College of Engineering and Technology is affiliated to Anna University, Chennai.
-Do you provide hostel for girls?,Hostel_Info,Yes, separate hostels for boys and girls are available with full security.
-What is mess menu in hostel?,Hostel_Info,The hostel mess provides both vegetarian and non-vegetarian food on a rotating menu.
-Is there 24 hours water facility in hostel?,Hostel_Info,Yes, hostel provides 24/7 water facility.
-Do you provide AC rooms?,Hostel_Info,Yes, limited AC rooms are available in hostel with additional charges.
-Is RCET located near bus stand?,Transport_Info,Yes, RCET is about 8 km from Nagercoil bus stand.
-Is railway station nearby?,Transport_Info,The nearest railway station is Nagercoil Junction, around 12 km from RCET.
-Does RCET have auditorium?,Facility_Info,Yes, the college has a spacious auditorium for seminars and cultural events.
-What labs are available?,Facility_Info,RCET has well-equipped laboratories for all engineering departments.
-Do you have computer labs?,Facility_Info,Yes, the campus has multiple computer labs with high-speed internet.
-Is internet available in campus?,Facility_Info,Yes, Wi-Fi internet is available throughout the campus.
-What are hostel rules?,Hostel_Info,Students should follow hostel timings, maintain discipline, and avoid using prohibited items.
-Is ragging allowed?,Discipline_Info,No, ragging is strictly prohibited and RCET has an anti-ragging committee.
-What dress code in college?,Discipline_Info,Students should wear formal dress; lab coats are mandatory during lab sessions.
-Is there uniform?,Discipline_Info,Yes, students must wear the prescribed uniform on working days.
-What cultural events are conducted?,Events_Info,RCET conducts annual cultural fest, sports day, and departmental symposiums.
-Do you celebrate technical events?,Events_Info,Yes, each department organizes technical symposiums and workshops.
-Do you celebrate hostel day?,Events_Info,Yes, hostel day is celebrated with cultural and entertainment programs.
-Do you celebrate graduation day?,Events_Info,Yes, RCET conducts convocation and graduation day every year.
+Question,Category,Answer
+What courses are offered?,Academics,"Rohini College offers B.E, B.Tech, M.E, and MBA in various streams like CSE, ECE, Mechanical, Civil, and Management."
+What is the college address?,General,"Rohini College of Engineering & Technology, Palkulam, Anjugramam, Kanyakumari District, Tamil Nadu - 629401."
+How far is the college from Nagercoil?,General,"The college is around 14 km from Nagercoil town."
+What is the official website?,General,"The official website is https://www.rohiniengg.ac.in"
+What are the admission procedures?,Admissions,"Admissions are through Anna University counseling (TNEA) and Management quota."
+Is hostel facility available?,Hostel,"Yes, separate hostels for boys and girls with modern facilities."
+What are hostel fees?,Hostel,"The hostel fee ranges between ₹60,000 to ₹75,000 per year including food."
+What is the library facility?,Library,"The library has 20,000+ volumes, digital library access, journals, and study spaces."
+Does the college provide transport?,Transport,"Yes, buses operate from various towns in Kanyakumari, Tirunelveli, and Nagercoil."
+What are the lab facilities?,Labs,"Fully equipped labs for CSE, Mechanical, Civil, EEE, ECE with advanced instruments."
+What is the placement record?,Placements,"The college has tie-ups with companies like TCS, Infosys, Wipro, Zoho. 85% students placed yearly."
+Does the college have WiFi?,Facilities,"Yes, the entire campus is WiFi enabled."
+Is there a medical facility?,Facilities,"Yes, a medical center with doctors and ambulance is available."
+What are the college timings?,General,"Classes usually start at 9:00 AM and end at 4:30 PM."
+What extracurricular activities are there?,Activities,"Sports, NSS, cultural fests, tech symposiums, and clubs."
+What scholarships are available?,Scholarship,"Government and private scholarships for SC/ST, BC, MBC, and merit students."
+Is there a canteen?,Facilities,"Yes, a spacious canteen with hygienic vegetarian and non-vegetarian food."
+How many acres is the campus?,General,"The college campus spreads across 32 acres of land."
+Is there an MBA program?,Academics,"Yes, a two-year MBA program with specializations in Finance, Marketing, and HR."
+Does the college conduct symposiums?,Activities,"Yes, annual technical symposiums are held in each department."
+What sports facilities are available?,Sports,"Football, cricket, basketball, badminton, athletics, indoor games."
+What is the college ranking?,General,"Rohini College is among the top engineering colleges in Tamil Nadu for Anna University region."
+Does the college provide internships?,Placements,"Yes, internships are arranged with industries and companies."
+What is the admission helpline number?,Admissions,"The admission helpline is +91-4652-  or check the official website."
+Is ragging allowed?,Discipline,"No, the college strictly prohibits ragging with anti-ragging committee support."
+What is the dress code?,Discipline,"Students must follow formal dress code, uniforms for labs."
+Are PG facilities available?,Hostel,"Yes, PG hostel with modern facilities."
+What is the student strength?,General,"The college has around 3000+ students enrolled."
+What are exam patterns?,Academics,"Semester exams conducted under Anna University regulations."
+Does the college support startups?,Innovation,"Yes, with incubation centers and entrepreneurship cell (EDC)."
+Is there NCC?,Activities,"Yes, NCC is available for interested students."
+What are the research facilities?,Research,"Research labs, funded projects, and PhD guides are available."
+Does the college have smart classrooms?,Facilities,"Yes, classrooms are equipped with projectors and smart boards."
+What festivals are celebrated?,Activities,"Cultural fest ‘Rohini Fest’, Pongal, Onam, and technical fests."
+What foreign collaborations exist?,Academics,"MoUs with international universities for research and student exchange."
+Is there placement training?,Placements,"Yes, training in aptitude, soft skills, and coding from 2nd year onwards."
+How many faculty members are there?,General,"The college has 200+ qualified teaching staff."
+What is the nearest railway station?,General,"Nagercoil Junction is the nearest railway station."
+Does the college provide bank/ATM?,Facilities,"Yes, an ATM facility is available inside campus."
+What is the mode of fee payment?,Fees,"Fees can be paid online, through bank challan, or demand draft."
+Does the college support sports quota?,Admissions,"Yes, sports quota admissions are available as per Anna University rules."
+Is there an alumni association?,Alumni,"Yes, a registered alumni association conducts events annually."
+What is the vision of the college?,General,"To provide world-class technical education with innovation and research."
+What is the mission of the college?,General,"To nurture students with knowledge, skills, values, and leadership."
+Is there counselling for students?,Facilities,"Yes, counseling and mentoring support are provided."
+Does the college have CCTV?,Facilities,"Yes, CCTV cameras cover all important areas."
+What foreign languages are taught?,Academics,"Optional foreign language training in German and Japanese."
+What is the grading system?,Academics,"Anna University grade system O, A+, A, B+ etc."
+Does the college organize industrial visits?,Academics,"Yes, regular industrial visits are organized."
+How is hostel food quality?,Hostel,"Nutritious, hygienic, and vegetarian/non-vegetarian options."
+What transportation routes are available?,Transport,"Buses cover Kanyakumari, Tirunelveli, Marthandam, Valliyoor, Nagercoil."
+Does the college have a placement cell?,Placements,"Yes, an active placement cell with industry tie-ups."
+What labs are in CSE department?,Labs,"AI Lab, Cloud Lab, Database Lab, Networking Lab, IoT Lab."
+What are college working days?,General,"The college usually works Monday to Friday, sometimes Saturday."
+What kind of library resources exist?,Library,"E-journals, IEEE access, NPTEL videos, and printed books."
+Does the college offer PhD?,Research,"Yes, recognized research center under Anna University."
+Is the canteen vegetarian?,Facilities,"Both vegetarian and non-vegetarian options are served."
+What student clubs are active?,Activities,"Coding club, robotics club, eco club, literary club, and photography club."
+What entrance exams are accepted?,Admissions,"TNEA (counseling), GATE for PG, TANCET for MBA/MCA."
+What is the grievance redressal system?,General,"Online grievance portal and committee for students."
+Does the college have auditorium?,Facilities,"Yes, a large auditorium for cultural and technical events."
+Is hostel compulsory?,Hostel,"No, hostel stay is optional."
+How is student discipline maintained?,Discipline,"Strict rules, CCTV, mentors, and anti-ragging committees."
+What is the college email?,General,"You can reach at info@rohiniengg.ac.in"
