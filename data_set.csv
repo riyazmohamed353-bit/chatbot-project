@@ -1,14 +1,44 @@
 User Query,Intent,Response
-What is the hostel fee?,Fees_Info,"The hostel fee for ground floor 60,000 per year, for first floor 65,000, for second floor 70,000,for third floor 75,000."
-How can I pay my college fees?,Fees_Info,"You can pay online through the MyCamu app or in Offline you can pay in the fees counter"
-Where is the library located?,Library_Info,"The library is Located in the A.P.J block 2nd floor ."
-What are library timings?,Library_Info,"The library is open from 8 AM to 8 PM."
-Tell me about hostel facilities,Hostel_Info,"The hostel has Wi-Fi, study rooms, and a mess facility."
-How many students per room in hostel?,Hostel_Info,"Each room accommodates 2–3 students."
-Tell me about college,College_Info,"Our college was established in 2001 and is AICTE approved."
-hi,greeting,"Hello! How can I assist you today?"
-hello,greeting,"Hi there! Need any help with campus info?"
-what is the college fee,college_fees,"The annual college fee is ₹50,000."
-tell me semester fees,semester_fees,"Each semester fee is ₹25,000."
+What is the hostel fee?,fees_info,The hostel fee for ground floor ₹60,000 per year, for first floor ₹65,000, for second floor ₹70,000, for third floor ₹75,000.
+How can I pay my college fees?,fees_info,You can pay online through the MyCamu app or in offline mode at the fee counter.
+Tell me hostel fees,fees_info,Hostel fee ranges from ₹60,000 to ₹75,000 depending on the floor.
+How much is hostel charges?,fees_info,Hostel fee is between ₹60,000–₹75,000 yearly.
+What is the fee for college?,college_fees,The annual college fee is ₹50,000.
+Tell me semester fees,semester_fees,Each semester fee is ₹25,000.
+How much to pay per semester?,semester_fees,Each semester costs ₹25,000.
+What are the semester charges?,semester_fees,Semester fee is fixed at ₹25,000.
+Where is the library located?,library_info,The library is located in the A.P.J block, 2nd floor.
+What are library timings?,library_info,The library is open from 8 AM to 8 PM.
+When does library open?,library_info,Library opens at 8 AM.
+When does library close?,library_info,Library closes at 8 PM.
+Tell me about hostel facilities,hostel_info,The hostel has Wi-Fi, study rooms, and a mess facility.
+How many students per room in hostel?,hostel_info,Each room accommodates 2–3 students.
+Does hostel have internet?,hostel_info,Yes, hostel has Wi-Fi available.
+Is there a mess in hostel?,hostel_info,Yes, hostel has an attached mess facility.
+Tell me about college,college_info,Our college was established in 2001 and is AICTE approved.
+Give me details of the college,college_info,The college is NAAC accredited and offers UG & PG programs.
+What are the departments available?,department_info,Departments CSE, CSE(AI&ML), AI&DS, ECE, EEE, CIVIL, BIOMEDICAL, AGRI, MECH and also Diploma & Masters in MBA, MCA, ME.
+List all branches,department_info,Available departments include CSE, AI&DS, ECE, EEE, Mechanical, Civil, Agriculture, Biomedical, MBA, MCA, ME.
+hi,greeting,Hello! How can I assist you today?
+hello,greeting,Hi there! Need any help with campus info?
+hey,greeting,Hey! How can I help you with college information?
+good morning,greeting,Good morning! What info do you need?
+good evening,greeting,Good evening! How can I assist?
+bye,greeting,Goodbye! Have a great day ahead.
+thanks,greeting,You’re welcome!
+thank you,greeting,Glad to help you!
 
-what are the departments available?,deptartment_info,"Departments CSE,CSE(AI&ML),AI&DS,ECE,EEE,CIVIL,BIO MEDICAL,AGRI,MECH and also DIPLAMO and MASTERS in MBA,MCA,ME are available"
+# --- Rohini College Specific ---
+What courses does Rohini College offer?,department_info,Rohini College offers UG courses like CSE, ECE, EEE, Mechanical, Civil, AI & DS etc., PG courses in M.E. and MBA, and MCA.
+Which B.Tech specializations are available at Rohini?,department_info,B.Tech specializations include Computer Science, Electronics & Communication, Electrical & Electronics, Mechanical, Civil, Biomedical, Agricultural, AI & Data Science.
+What is the fee range for B.Tech at Rohini?,college_fees,The tuition fee range for B.Tech courses at Rohini is approximately ₹1.6 lakh to ₹2.8 lakh.
+What entrance exam is required for Rohini engineering?,admission_info,Admission to B.E./B.Tech is through TNEA counseling, and for PG courses through GATE/TANCET.
+Where is Rohini College located?,college_location,Rohini College of Engineering & Technology is located in Palkulam, near Anjugramam Junction, on the Nagercoil-Kanyakumari main road, Tamil Nadu.
+What is the affiliation of Rohini College?,college_info,Rohini College is affiliated with Anna University, approved by AICTE, and is ISO certified.
+What are the postgraduate options at Rohini?,department_info,Rohini offers M.E in Communication Systems, Computer Science, Construction Engineering, Thermal Engineering, and MBA programs.
+How many seats in CSE branch at Rohini?,admission_info,CSE branch has around 120–150 seats depending on specialization.
+What is the placement scenario at Rohini?,placement_info,Rohini has good placement stats: many students placed each year, average package around ₹3.5 LPA.
+Does Rohini have hostel facilities?,hostel_info,Yes, Rohini provides separate hostel facilities for boys and girls with Wi-Fi, mess, and study rooms.
+What is Rohini College ranking?,college_info,Rohini College is among the reputed engineering colleges in Kanyakumari district with strong academic and placement records.
+Tell me about Rohini College bus facility,transport_info,Rohini provides bus facilities covering major towns in Kanyakumari, Nagercoil, Tirunelveli, and surrounding areas.
+What extracurricular activities are available at Rohini?,campus_life,Rohini encourages sports, NSS, cultural clubs, and technical societies for overall student development.
