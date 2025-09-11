@@ -1,5 +1,6 @@
 Flask
 pandas
+sentence-transformers
 scikit-learn
 numpy
 fuzzywuzzy[speedup]
