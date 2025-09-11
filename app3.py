@@ -10,7 +10,7 @@ app = Flask(__name__)
 # 1. Load Dataset
 # -----------------------------
 # Make sure your CSV is named exactly 'dataset.csv' and Responses are quoted (") if they contain commas.
-data = pd.read_csv("dataset.csv")  
+data = pd.read_csv("data_set.csv")  
 
 # normalize intent labels
 data['Intent'] = data['Intent'].str.lower().str.strip()
