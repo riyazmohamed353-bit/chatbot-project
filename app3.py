@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 import pandas as pd
-from sentence_transformers import SentenceTransformer, util
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 # -------------------- Flask App --------------------
 app = Flask(__name__)
@@ -20,12 +21,9 @@ for _, row in data.iterrows():
 
 questions = list(qa_dict.keys())
 
-# -------------------- Embedding Model --------------------
-# Small, fast model (downloads first time)
-model = SentenceTransformer("all-MiniLM-L6-v2")
-
-# Precompute embeddings for dataset questions
-question_embeddings = model.encode(questions, convert_to_tensor=True)
+# -------------------- TF-IDF Model --------------------
+vectorizer = TfidfVectorizer()
+question_vectors = vectorizer.fit_transform(questions)
 
 # -------------------- Routes --------------------
 @app.route("/")
@@ -34,22 +32,22 @@ def home():
 
 @app.route("/get", methods=["POST"])
 def chatbot_response():
-    user_message = request.form["message"].strip()
+    user_message = request.form["message"].strip().lower()
 
     # Reject very short or nonsense input
     if len(user_message) < 3:
         return jsonify({"reply": "⚠️ Please ask a complete question."})
 
-    # Encode user query
-    user_embedding = model.encode(user_message, convert_to_tensor=True)
+    # Convert user query into TF-IDF vector
+    user_vector = vectorizer.transform([user_message])
 
     # Compute cosine similarity
-    scores = util.cos_sim(user_embedding, question_embeddings)[0]
-    best_idx = int(scores.argmax())
-    best_score = float(scores[best_idx])
+    scores = cosine_similarity(user_vector, question_vectors)[0]
+    best_idx = scores.argmax()
+    best_score = scores[best_idx]
 
     # Check similarity threshold
-    if best_score >= 0.75:
+    if best_score >= 0.3:  # lower threshold for TF-IDF
         reply = qa_dict[questions[best_idx]][0]  # take first answer
     else:
         reply = (
