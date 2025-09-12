@@ -49,7 +49,7 @@ def chatbot_response():
     best_score = float(scores[best_idx])
 
     # Check similarity threshold
-    if best_score >= 0.6:
+    if best_score >= 0.75:
         reply = qa_dict[questions[best_idx]][0]  # take first answer
     else:
         reply = (
