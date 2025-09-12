@@ -1,5 +1,7 @@
+# app.py
 from flask import Flask, request, jsonify, render_template
 import pandas as pd
+import random
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -22,7 +24,8 @@ for _, row in data.iterrows():
 questions = list(qa_dict.keys())
 
 # -------------------- TF-IDF Model --------------------
-vectorizer = TfidfVectorizer()
+# Use unigrams + bigrams to improve matching for short phrases
+vectorizer = TfidfVectorizer(ngram_range=(1, 2))
 question_vectors = vectorizer.fit_transform(questions)
 
 # -------------------- Routes --------------------
@@ -32,31 +35,39 @@ def home():
 
 @app.route("/get", methods=["POST"])
 def chatbot_response():
-    user_message = request.form["message"].strip().lower()
+    user_message = request.form.get("message", "").strip().lower()
 
-    # Reject very short or nonsense input
-    if len(user_message) < 3:
-        return jsonify({"reply": "⚠️ Please ask a complete question."})
+    # Basic validation
+    if len(user_message) < 1:
+        return jsonify({"reply": "⚠️ Please type a message."})
 
-    # Convert user query into TF-IDF vector
+    # 1) Exact (or near-exact) match first — useful for greetings/short phrases
+    if user_message in qa_dict:
+        reply = random.choice(qa_dict[user_message])
+        print(f"[DEBUG] Exact match for '{user_message}' -> reply selected")
+        return jsonify({"reply": reply})
+
+    # 2) TF-IDF similarity fallback
     user_vector = vectorizer.transform([user_message])
-
-    # Compute cosine similarity
     scores = cosine_similarity(user_vector, question_vectors)[0]
-    best_idx = scores.argmax()
-    best_score = scores[best_idx]
+    best_idx = int(scores.argmax())
+    best_score = float(scores[best_idx])
 
-    # Check similarity threshold
-    if best_score >= 0.3:  # lower threshold for TF-IDF
-        reply = qa_dict[questions[best_idx]][0]  # take first answer
+    # Debug log (visible in Render logs / console)
+    print(f"[DEBUG] User: '{user_message}'  BestMatch: '{questions[best_idx]}'  Score: {best_score:.4f}")
+
+    # Threshold (tune as needed; TF-IDF scores are usually lower than embeddings)
+    THRESHOLD = 0.25
+
+    if best_score >= THRESHOLD:
+        reply = random.choice(qa_dict[questions[best_idx]])
     else:
-        reply = (
-            "❓ Sorry, I don't have info on that.\n"
-            "👉 Try asking about college details."
-        )
+        # use CSV fallback row if exists, else default string
+        reply = qa_dict.get("fallback", ["⚠️ Sorry, I didn’t understand that. Could you rephrase your question?"])[0]
 
     return jsonify({"reply": reply})
 
 # -------------------- Run --------------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    # For local testing
+    app.run(host="0.0.0.0", port=5000, debug=True)
