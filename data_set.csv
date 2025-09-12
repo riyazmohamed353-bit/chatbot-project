@@ -1,14 +1,17 @@
 Question,Answer
-greeting,"Hello 👋, how can I assist you today?"
-greeting,"Hi there! 😊 Need any help with campus info?"
-greeting,"Hey! 👋 What can I do for you?"
-greeting,"Good morning 🌞, hope you’re doing well. How can I help?"
-greeting,"Good afternoon 🌼, what can I assist you with?"
-greeting,"Good evening 🌙, need any campus-related help?"
+hi,"Hello 👋, how can I assist you today?"
+hello,"Hi there! 😊 Need any help with campus info?"
+hey,"Hey! 👋 What can I do for you?"
+good morning,"Good morning 🌞, hope you’re doing well. How can I help?"
+good afternoon,"Good afternoon 🌼, what can I assist you with?"
+good evening,"Good evening 🌙, need any campus-related help?"
+
 bye,"Goodbye 👋, have a nice day!"
-bye,"See you soon! 👋 Take care."
-thank,"You're welcome! 😊"
-thank,"No problem 👍 Happy to help!"
+goodbye,"See you soon! 👋 Take care."
+
+thank you,"You're welcome! 😊"
+thanks,"No problem 👍 Happy to help!"
+thx,"No problem 👍 Happy to help!"
 
 who are you,"I am your Rohini College Campus Assistant ."
 college fee,"The annual college fee is ₹50,000."
